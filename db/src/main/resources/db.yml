@@ -13,8 +13,5 @@ spring.config.activate.on-profile: local
 spring:
   data:
     mongodb:
-      host: localhost
-      port: 27000
-      authentication-database: admin
-      username: root
-      password: 1234
+      uri: mongodb://admin:admin@localhost:27000/short_url?authSource=admin
+      database: short_url

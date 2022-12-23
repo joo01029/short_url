@@ -1,21 +1,33 @@
 package com.url.urlzip.url.domain
 
+import io.seruco.encoding.base62.Base62
 import org.springframework.stereotype.Component
-import org.springframework.util.Base64Utils
+import java.nio.ByteBuffer
 import java.security.DigestException
-import java.security.MessageDigest
+import java.util.zip.CRC32
 
 @Component
 class UrlHashing {
+    private val base62 = Base62.createInstanceWithInvertedCharacterSet()
     fun hash(url: String): String {
-        val hashData: ByteArray
+        val hashData: Long
         try {
-            val md = MessageDigest.getInstance("SHA-256")
-            md.update(url.toByteArray())
-            hashData = md.digest()
+            val hashAlgorithm = CRC32()
+            hashAlgorithm.update(url.toByteArray())
+            hashData = hashAlgorithm.value
         } catch (e: CloneNotSupportedException) {
             throw DigestException("couldn't make digest of patial content")
         }
-        return Base64Utils.encodeToUrlSafeString(hashData)
+        return String(base62.encode(hashData.toByteArray()))
+    }
+
+    fun Long.toByteArray(): ByteArray {
+        val byteBuffer = ByteBuffer.allocate(Long.SIZE_BYTES)
+        try {
+            byteBuffer.putLong(this)
+            return byteBuffer.array()
+        } finally {
+            byteBuffer.clear()
+        }
     }
 }
