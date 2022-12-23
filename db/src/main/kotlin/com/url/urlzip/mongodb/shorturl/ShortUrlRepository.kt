@@ -1,8 +1,8 @@
 package com.url.urlzip.mongodb.shorturl
 
-import org.springframework.data.mongodb.repository.ReactiveMongoRepository
+import org.springframework.data.mongodb.repository.MongoRepository
 
-interface ShortUrlRepository : ReactiveMongoRepository<ShortUrl, String> {
+interface ShortUrlRepository : MongoRepository<ShortUrl, String> {
 
     fun findByRealUrl(realUrl: String): ShortUrl?
 }
