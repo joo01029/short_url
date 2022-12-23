@@ -1,0 +1,20 @@
+spring.profiles.active: local
+
+spring:
+  data:
+    mongodb:
+      database: qwerqwer
+
+
+---
+
+spring.config.activate.on-profile: local
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27000
+      authentication-database: admin
+      username: root
+      password: 1234
