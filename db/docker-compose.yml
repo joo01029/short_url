@@ -3,7 +3,6 @@ services:
   mongodb:
     image: mongo
     container_name: mongodb
-    restart: always
     ports:
       - 27000:27017
     volumes:
@@ -11,4 +10,4 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=1234
-      - MONGO_INITDB_DATABASE=mydb
+      - MONGO_INITDB_DATABASE=short_url
