@@ -1,8 +1,7 @@
 rootProject.name = "visited"
 
 include(
-    "api",
-    "db"
+    "api"
 )
 
 pluginManagement {
