@@ -1,4 +1,4 @@
-rootProject.name = "visited"
+rootProject.name = "urlzip"
 
 include(
     "api",
