@@ -19,15 +19,16 @@ class UrlWriter(
 
         log.info(
             """
-            shortUrl : $shortUrl
+            hashedUrl : $hashedUrl
             realUrl : $url
             """.trimIndent()
         )
         val shortUrlData = ShortUrl(
-            shortUrl = shortUrl,
+            shortUrl = hashedUrl,
             realUrl = url.url
         )
 
-        return shortUrlRepository.save(shortUrlData).shortUrl
+        shortUrlRepository.save(shortUrlData)
+        return shortUrl
     }
 }
