@@ -1,9 +1,22 @@
 package com.url.urlzip.mongodb.shorturl
 
-import org.springframework.data.annotation.Id
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.Id
 
-class ShortUrl(
+@Entity
+class ShortUrl {
     @Id
-    val shortUrl: String,
-    val realUrl: String
-)
+    @Column(nullable = false)
+    var shortUrl: String? = null
+    @Column(nullable = false)
+    var realUrl: String? = null
+
+    constructor(shortUrl: String, realUrl: String) {
+        this.shortUrl = shortUrl
+        this.realUrl = realUrl
+    }
+
+    constructor() {
+    }
+}

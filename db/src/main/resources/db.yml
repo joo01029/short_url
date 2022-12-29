@@ -1,9 +1,17 @@
 spring.profiles.active: local
 
+
 spring:
-  data:
-    mongodb:
-      database: qwerqwer
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+        jdbc:
+          batch_size: 1000
+
 
 
 ---
@@ -11,7 +19,23 @@ spring:
 spring.config.activate.on-profile: local
 
 spring:
-  data:
-    mongodb:
-      uri: mongodb://admin:admin@localhost:27000/short_url?authSource=admin
-      database: short_url
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/short_url?serverTimezone=UTC
+    username: root
+    password: 1234
+
+
+---
+spring.config.activate.on-profile: test
+
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2
