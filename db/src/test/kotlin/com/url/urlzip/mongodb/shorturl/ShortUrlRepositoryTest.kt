@@ -3,10 +3,10 @@ package com.url.urlzip.mongodb.shorturl
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 
-@DataMongoTest
-class ShortUrlRepositoryTest @Autowired private constructor(
+@DataJpaTest
+internal class ShortUrlRepositoryTest @Autowired constructor(
     private val shortUrlRepository: ShortUrlRepository
 ) {
 
